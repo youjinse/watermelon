@@ -1,26 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <component :is="layout">
+        <transition name="fade" mode="out-in">
+            <router-view></router-view>
+        </transition>
+    </component>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  const default_layout = "default";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    computed: {
+      layout() {
+        return (this.$route.meta.layout || default_layout) + '-layout';
+      }
+    }
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  @import "assets/base.scss";
 </style>
