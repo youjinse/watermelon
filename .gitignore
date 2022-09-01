@@ -1,4 +1,6 @@
 venv
+lib
+bin
 
 # local env files
 .env.local
